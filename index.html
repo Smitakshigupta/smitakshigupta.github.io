@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smitakshi Gupta | Senior AI Product Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,900;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a0f1e;
+  --navy-mid: #111827;
+  --navy-light: #1a2540;
+  --gold: #c9a84c;
+  --gold-light: #e8c96e;
+  --gold-muted: #8a6f32;
+  --cream: #f5f0e8;
+  --cream-dim: #d4cfc4;
+  --slate: #94a3b8;
+  --accent-teal: #2dd4bf;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--navy); color: var(--cream); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; cursor: none; }
+.cursor { width: 12px; height: 12px; background: var(--gold); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transition: transform 0.1s ease; mix-blend-mode: difference; }
+.cursor-ring { width: 36px; height: 36px; border: 1px solid var(--gold); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transition: transform 0.25s ease; opacity: 0.6; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9997; opacity: 0.4; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, rgba(10,15,30,0.97), transparent); backdrop-filter: blur(4px); }
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.05em; }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--slate); text-decoration: none; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; }
+.nav-links a:hover { color: var(--gold); }
+.nav-links a.nav-highlight { color: var(--gold); border: 1px solid rgba(201,168,76,0.4); padding: 6px 14px; letter-spacing: 0.1em; }
+.nav-links a.nav-highlight:hover { background: rgba(201,168,76,0.08); }
+
+/* HERO */
+.hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 60px 80px; position: relative; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 80% 50%, rgba(201,168,76,0.08) 0%, transparent 60%), radial-gradient(ellipse 40% 40% at 10% 80%, rgba(45,212,191,0.05) 0%, transparent 50%); }
+.hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px); background-size: 80px 80px; mask-image: radial-gradient(ellipse at 70% 50%, black 30%, transparent 70%); }
+.hero-content { position: relative; z-index: 2; max-width: 960px; }
+.hero-tag { display: inline-flex; align-items: center; gap: 10px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 36px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.2s; }
+.hero-tag::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
+.hero-name { font-family: 'Playfair Display', serif; font-size: clamp(52px, 7vw, 88px); font-weight: 900; line-height: 0.95; color: var(--cream); margin-bottom: 16px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.4s; }
+.hero-name em { font-style: italic; color: var(--gold); }
+.hero-title { font-family: 'Playfair Display', serif; font-size: clamp(18px, 2.5vw, 28px); font-weight: 400; font-style: italic; color: var(--slate); margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.6s; }
+.hero-contact { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 36px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.7s; }
+.hero-contact a { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--slate); text-decoration: none; letter-spacing: 0.1em; display: flex; align-items: center; gap: 8px; transition: color 0.3s; }
+.hero-contact a:hover { color: var(--gold); }
+.hero-contact a::before { content: '→'; color: var(--gold); font-size: 10px; }
+.hero-desc { font-size: 16px; line-height: 1.8; color: var(--cream-dim); max-width: 600px; margin-bottom: 52px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.8s; }
+.hero-stats { display: flex; gap: 48px; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.8s ease forwards 1s; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 600; color: var(--gold); line-height: 1; }
+.stat-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--slate); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 6px; }
+.hero-scroll { position: absolute; bottom: 40px; left: 60px; display: flex; align-items: center; gap: 16px; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--slate); letter-spacing: 0.15em; text-transform: uppercase; opacity: 0; animation: fadeUp 0.8s ease forwards 1.2s; }
+.scroll-line { width: 48px; height: 1px; background: var(--gold-muted); position: relative; overflow: hidden; }
+.scroll-line::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--gold); animation: scrollAnim 2s ease-in-out infinite; }
+@keyframes scrollAnim { 0% { left: -100%; } 100% { left: 100%; } }
+
+/* SECTIONS */
+section { padding: 120px 60px; position: relative; }
+.section-tag { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase; display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+.section-tag::after { content: ''; flex: 1; max-width: 80px; height: 1px; background: var(--gold-muted); }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 64px); font-weight: 900; color: var(--cream); line-height: 1.05; margin-bottom: 20px; }
+.section-title em { font-style: italic; color: var(--gold); }
+.section-sub { font-size: 15px; color: var(--slate); line-height: 1.7; max-width: 560px; margin-bottom: 72px; }
+
+/* EXPERTISE */
+.expertise { background: var(--navy-mid); }
+.expertise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.1); }
+.expertise-card { background: var(--navy-mid); padding: 44px 36px; transition: background 0.4s; position: relative; overflow: hidden; }
+.expertise-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--gold), transparent); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+.expertise-card:hover { background: var(--navy-light); }
+.expertise-card:hover::before { transform: scaleX(1); }
+.card-icon { font-size: 28px; margin-bottom: 20px; }
+.card-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; color: var(--cream); margin-bottom: 14px; }
+.card-desc { font-size: 14px; color: var(--slate); line-height: 1.7; margin-bottom: 24px; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 10px; border: 1px solid rgba(201,168,76,0.25); color: var(--gold-muted); border-radius: 2px; }
+
+/* CASE STUDIES */
+.cases { background: var(--navy); }
+.case-study { margin-bottom: 80px; display: grid; grid-template-columns: 1fr 1.6fr; gap: 0; border: 1px solid rgba(201,168,76,0.1); overflow: hidden; transition: border-color 0.4s; }
+.case-study:hover { border-color: rgba(201,168,76,0.3); }
+.case-study:last-child { margin-bottom: 0; }
+.case-left { background: var(--navy-light); padding: 52px 44px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+.case-left::after { content: attr(data-num); position: absolute; bottom: -20px; right: -10px; font-family: 'Playfair Display', serif; font-size: 160px; font-weight: 900; color: rgba(201,168,76,0.04); line-height: 1; pointer-events: none; }
+.case-badge { display: inline-block; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; padding: 6px 12px; border: 1px solid var(--gold-muted); color: var(--gold); margin-bottom: 28px; width: fit-content; }
+.case-company { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 900; color: var(--cream); line-height: 1.1; margin-bottom: 12px; }
+.case-role { font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--gold); font-weight: 500; margin-bottom: 32px; }
+.case-metrics { display: flex; flex-direction: column; gap: 16px; }
+.metric { display: flex; align-items: baseline; gap: 12px; }
+.metric-val { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; color: var(--gold); line-height: 1; min-width: 80px; }
+.metric-label { font-size: 12px; color: var(--slate); line-height: 1.4; }
+.case-right { background: var(--navy-mid); padding: 52px 48px; }
+.case-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--cream); margin-bottom: 20px; line-height: 1.2; }
+.case-summary { font-size: 14px; color: var(--cream-dim); line-height: 1.8; margin-bottom: 32px; border-left: 2px solid var(--gold-muted); padding-left: 20px; font-style: italic; }
+.case-section-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 14px; }
+.case-content { font-size: 13px; color: var(--slate); line-height: 1.8; margin-bottom: 28px; }
+.case-content ul { padding-left: 0; list-style: none; }
+.case-content li { padding: 8px 0; border-bottom: 1px solid rgba(148,163,184,0.08); display: flex; gap: 12px; }
+.case-content li::before { content: '→'; color: var(--gold); flex-shrink: 0; font-size: 12px; margin-top: 1px; }
+.case-outcome-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(201,168,76,0.1); margin-top: 28px; }
+.outcome-item { background: var(--navy); padding: 20px 16px; text-align: center; }
+.outcome-num { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: var(--accent-teal); display: block; }
+.outcome-desc { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--slate); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; display: block; }
+
+/* SKILLS */
+.skills-section { background: var(--navy-mid); }
+.skills-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start; }
+.skill-bar-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
+.skill-bar-name { font-size: 13px; color: var(--cream); font-weight: 500; }
+.skill-bar-pct { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gold); }
+.skill-bar-track { height: 3px; background: rgba(201,168,76,0.1); margin-bottom: 20px; }
+.skill-bar-fill { height: 100%; background: linear-gradient(90deg, var(--gold-muted), var(--gold)); width: 0%; transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1); }
+.skill-chips-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 40px; }
+.skill-chip { padding: 14px 16px; border: 1px solid rgba(201,168,76,0.12); font-family: 'DM Mono', monospace; font-size: 10px; color: var(--slate); letter-spacing: 0.08em; text-transform: uppercase; text-align: center; transition: all 0.3s; }
+.skill-chip:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.05); }
+
+/* TIMELINE */
+.timeline-section { background: var(--navy); }
+.timeline { position: relative; padding-left: 60px; }
+.timeline::before { content: ''; position: absolute; top: 0; left: 20px; width: 1px; height: 100%; background: linear-gradient(to bottom, var(--gold), transparent); }
+.timeline-item { position: relative; margin-bottom: 56px; opacity: 0; transform: translateX(-20px); transition: all 0.6s ease; }
+.timeline-item.visible { opacity: 1; transform: translateX(0); }
+.timeline-dot { position: absolute; left: -48px; top: 6px; width: 12px; height: 12px; background: var(--gold); border-radius: 50%; border: 3px solid var(--navy); box-shadow: 0 0 0 1px var(--gold); }
+.timeline-year { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px; }
+.timeline-role { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--cream); margin-bottom: 4px; }
+.timeline-company { font-size: 13px; color: var(--gold-muted); font-weight: 500; margin-bottom: 12px; }
+.timeline-desc { font-size: 13px; color: var(--slate); line-height: 1.7; max-width: 700px; }
+
+/* APPROACH */
+.approach { background: var(--navy-mid); }
+.approach-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: rgba(201,168,76,0.08); }
+.approach-card { background: var(--navy-mid); padding: 44px 28px; text-align: center; transition: background 0.3s; }
+.approach-card:hover { background: var(--navy-light); }
+.approach-step { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--gold-muted); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 20px; }
+.approach-icon { font-size: 32px; margin-bottom: 16px; }
+.approach-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--cream); margin-bottom: 14px; }
+.approach-desc { font-size: 12px; color: var(--slate); line-height: 1.7; }
+
+/* CONTACT */
+.contact { background: var(--navy); text-align: center; padding: 160px 60px; position: relative; overflow: hidden; }
+.contact::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 80% at 50% 100%, rgba(201,168,76,0.08) 0%, transparent 60%); }
+.contact-content { position: relative; z-index: 2; }
+.contact-eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 24px; }
+.contact-title { font-family: 'Playfair Display', serif; font-size: clamp(40px, 6vw, 80px); font-weight: 900; color: var(--cream); line-height: 1.0; margin-bottom: 28px; }
+.contact-title em { color: var(--gold); font-style: italic; }
+.contact-sub { font-size: 15px; color: var(--slate); max-width: 440px; margin: 0 auto 56px; line-height: 1.7; }
+.contact-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+.btn-primary { padding: 16px 40px; background: var(--gold); color: var(--navy); font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201,168,76,0.25); }
+.btn-outline { padding: 16px 40px; border: 1px solid var(--gold-muted); color: var(--gold); font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; background: transparent; }
+.btn-outline:hover { border-color: var(--gold); background: rgba(201,168,76,0.05); transform: translateY(-2px); }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+footer { background: var(--navy-mid); padding: 28px 60px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(201,168,76,0.08); }
+.footer-text { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--slate); letter-spacing: 0.1em; }
+.footer-name { font-family: 'Playfair Display', serif; font-size: 14px; color: var(--gold); }
+
+@media (max-width: 900px) {
+  nav { padding: 20px 24px; }
+  section { padding: 80px 24px; }
+  .hero { padding: 100px 24px 60px; }
+  .hero-stats { gap: 28px; }
+  .expertise-grid { grid-template-columns: 1fr; }
+  .case-study { grid-template-columns: 1fr; }
+  .skills-layout { grid-template-columns: 1fr; gap: 48px; }
+  .approach-grid { grid-template-columns: repeat(2, 1fr); }
+  .skill-chips-grid { grid-template-columns: repeat(2, 1fr); }
+  .nav-links { display: none; }
+  footer { flex-direction: column; gap: 8px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <div class="nav-logo">Smitakshi Gupta</div>
+  <div class="nav-links">
+    <a href="#expertise">Expertise</a>
+    <a href="#cases">Case Studies</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Senior / Staff AI Product Manager · Data Science · Enterprise Scale</div>
+    <h1 class="hero-name"><em>Smitakshi<br>Gupta</em></h1>
+    <p class="hero-title">Senior / Staff AI Product Manager · 15+ Years · Financial Services & AI</p>
+    <div class="hero-contact">
+      <a href="mailto:smitakshiguptaa@gmail.com">smitakshiguptaa@gmail.com</a>
+      <a href="tel:7062890065">706-289-0065</a>
+      <a href="https://linkedin.com/in/smitakshi-gupta/" target="_blank">LinkedIn</a>
+      <a href="#">Charlotte, NC · Remote-Ready</a>
+    </div>
+    <p class="hero-desc">I bridge deep technical expertise in LLMs, RAG architecture, and production ML with strategic product leadership — turning complex AI capabilities into measurable business outcomes at enterprise scale. From 45% to 80% answer rates. From 70% to 92% model accuracy. From prototype to 2.3M monthly queries.</p>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">92%</div><div class="stat-label">ML Accuracy Achieved</div></div>
+      <div class="stat-item"><div class="stat-num">$6.8M</div><div class="stat-label">Annual Cost Savings</div></div>
+      <div class="stat-item"><div class="stat-num">2.3M+</div><div class="stat-label">Monthly AI Queries</div></div>
+      <div class="stat-item"><div class="stat-num">&lt;1%</div><div class="stat-label">Hallucination Rate</div></div>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div>Scroll to explore</div>
+</section>
+
+<!-- EXPERTISE -->
+<section class="expertise" id="expertise">
+  <div class="section-tag">Core Expertise</div>
+  <h2 class="section-title reveal">Where I Create<br><em>Disproportionate</em> Value</h2>
+  <p class="section-sub reveal">Three domains where technical hands-on depth meets product strategy — shipping AI that works in production, in compliance, with quantified results.</p>
+  <div class="expertise-grid">
+    <div class="expertise-card reveal">
+      <div class="card-icon">🤖</div>
+      <div class="card-title">Conversational AI & LLMs</div>
+      <div class="card-desc">Owned the full ML lifecycle for a RAG-powered AI assistant serving 2.3M+ monthly queries. Evaluated 8 LLMs, selected GPT-4 (34% cost reduction, 25% perf gain), built 5-layer monitoring, maintained &lt;1% hallucination rate and 89% CSAT in a regulated environment.</div>
+      <div class="card-tags"><span class="tag">GPT-4</span><span class="tag">LangChain</span><span class="tag">RAG</span><span class="tag">Prompt Eng.</span><span class="tag">LLM Eval</span></div>
+    </div>
+    <div class="expertise-card reveal">
+      <div class="card-icon">🔍</div>
+      <div class="card-title">Data Products & ML Systems</div>
+      <div class="card-desc">Built ML pipelines, NLP classification systems, and data sampling platforms from 0→1. Defined product requirements for vector databases, topic modeling, and analytics layers — translating infrastructure into user-facing outcomes with measurable business impact.</div>
+      <div class="card-tags"><span class="tag">Pinecone</span><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">MLOps</span><span class="tag">Docker</span></div>
+    </div>
+    <div class="expertise-card reveal">
+      <div class="card-icon">⚖️</div>
+      <div class="card-title">AI Governance & Team Leadership</div>
+      <div class="card-desc">Built governance and monitoring frameworks for enterprise AI in heavily regulated environments. Scaled data science team from 4→8 specialists, achieving 92% engagement and 95% on-time delivery. $2.5M budget management with full P&L accountability.</div>
+      <div class="card-tags"><span class="tag">AI Governance</span><span class="tag">Model Risk</span><span class="tag">Compliance</span><span class="tag">Team Scaling</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="cases" id="cases">
+  <div class="section-tag">Case Studies</div>
+  <h2 class="section-title reveal">Product Work<br>That <em>Shipped</em></h2>
+  <p class="section-sub reveal">Three projects across financial services, global technology, and philanthropy — each showing the full arc from discovery to measurable production outcomes.</p>
+
+  <div class="case-study reveal">
+    <div class="case-left" data-num="01">
+      <div>
+        <div class="case-badge">Case Study 01</div>
+        <div class="case-company">Enterprise<br>AI Assistant</div>
+        <div class="case-role">Senior Product Manager, AI Strategy &amp; Governance<br>Top-5 U.S. Financial Institution</div>
+      </div>
+      <div class="case-metrics">
+        <div class="metric"><div class="metric-val">2.3M+</div><div class="metric-label">Monthly queries in production</div></div>
+        <div class="metric"><div class="metric-val">70%→92%</div><div class="metric-label">ML accuracy improvement</div></div>
+        <div class="metric"><div class="metric-val">$6.8M</div><div class="metric-label">Annual cost savings delivered</div></div>
+      </div>
+    </div>
+    <div class="case-right">
+      <div class="case-title">Scaling a RAG-Powered AI Assistant to 2.3M Monthly Queries</div>
+      <div class="case-summary">I owned the full ML product lifecycle — feature engineering, deployment, monitoring, and iteration — for an enterprise conversational AI assistant. The result: accuracy from 70% to 92%, answer rate from 45% to 80%, &lt;1% hallucination rate, and $6.8M in annual savings.</div>
+      <div class="case-section-label">The Challenge</div>
+      <div class="case-content"><ul>
+        <li>Question answer rate stuck at 45% — more than half of queries unresolved, driving up support costs and eroding user trust</li>
+        <li>Model accuracy at 70% insufficient for regulatory approval; hallucination risk unacceptable in compliance-sensitive environment</li>
+        <li>No systematic LLM evaluation framework existed; model selection and prompt iteration were ad hoc and undocumented</li>
+      </ul></div>
+      <div class="case-section-label">What I Did</div>
+      <div class="case-content"><ul>
+        <li>Conducted 20+ user research interviews and analyzed 10,000 support tickets to identify query failure modes and improvement priorities</li>
+        <li>Designed structured evaluation of 8 LLMs — selected GPT-4, reducing API costs 34% while improving response quality 25%</li>
+        <li>Built 5-layer production monitoring: accuracy, latency, hallucination rate, drift detection, and CSAT — enabling rapid, evidence-based iteration</li>
+        <li>Defined and hit explicit success criteria: accuracy ≥92%, latency &lt;2s, cost &lt;$50K/month — all three achieved simultaneously</li>
+        <li>Grew data science team 4→8 specialists, achieving 92% engagement and 95% on-time delivery across $2.5M annual budget</li>
+      </ul></div>
+      <div class="case-outcome-strip">
+        <div class="outcome-item"><span class="outcome-num">70%→92%</span><span class="outcome-desc">ML Accuracy</span></div>
+        <div class="outcome-item"><span class="outcome-num">45%→80%</span><span class="outcome-desc">Answer Rate</span></div>
+        <div class="outcome-item"><span class="outcome-num">$6.8M</span><span class="outcome-desc">Annual Savings</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-study reveal">
+    <div class="case-left" data-num="02">
+      <div>
+        <div class="case-badge">Case Study 02</div>
+        <div class="case-company">Privacy<br>Intelligence Platform</div>
+        <div class="case-role">AI Product Consultant<br>Global Technology Platform</div>
+      </div>
+      <div class="case-metrics">
+        <div class="metric"><div class="metric-val">85%</div><div class="metric-label">Increase in compliance adherence score</div></div>
+        <div class="metric"><div class="metric-val">4+</div><div class="metric-label">Product lines unified on one platform</div></div>
+        <div class="metric"><div class="metric-val">0→1</div><div class="metric-label">Full build from specs to production</div></div>
+      </div>
+    </div>
+    <div class="case-right">
+      <div class="case-title">Building a Data Sampling & Privacy Compliance Monitoring Platform</div>
+      <div class="case-summary">Designed and shipped a SQL-based data sampling and monitoring system for privacy compliance programs at a global technology company — delivering an 85% improvement in compliance adherence scores across multiple product lines.</div>
+      <div class="case-section-label">The Problem</div>
+      <div class="case-content"><ul>
+        <li>Privacy compliance audits were manual, inconsistent, and error-prone — no repeatable sampling infrastructure existed</li>
+        <li>Engineering and legal teams had no shared visibility into data handling at the query level across product lines</li>
+        <li>Different data schemas across 4+ product lines made a unified compliance view technically and organizationally complex</li>
+      </ul></div>
+      <div class="case-section-label">What I Did</div>
+      <div class="case-content"><ul>
+        <li>Wrote comprehensive product specs for SQL-based stratified sampling logic, defining confidence requirements and edge case handling</li>
+        <li>Built shared compliance monitoring dashboard surfacing real-time signals to legal, engineering, and product stakeholders</li>
+        <li>Designed flexible architecture accommodating 4+ product lines with independent data models — avoiding one-size-fits-all brittleness</li>
+        <li>Validated with compliance team at each milestone; 85% improvement in adherence score confirmed at next audit cycle</li>
+      </ul></div>
+      <div class="case-outcome-strip">
+        <div class="outcome-item"><span class="outcome-num">85%</span><span class="outcome-desc">Compliance Uplift</span></div>
+        <div class="outcome-item"><span class="outcome-num">4+</span><span class="outcome-desc">Product Lines</span></div>
+        <div class="outcome-item"><span class="outcome-num">0→1</span><span class="outcome-desc">Full Delivery</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-study reveal">
+    <div class="case-left" data-num="03">
+      <div>
+        <div class="case-badge">Case Study 03</div>
+        <div class="case-company">Document<br>Intelligence System</div>
+        <div class="case-role">AI Product Consultant<br>Global Philanthropic Organization</div>
+      </div>
+      <div class="case-metrics">
+        <div class="metric"><div class="metric-val">1.2M</div><div class="metric-label">Legal documents automatically classified</div></div>
+        <div class="metric"><div class="metric-val">17%</div><div class="metric-label">Efficiency improvement via ML automation</div></div>
+        <div class="metric"><div class="metric-val">20+</div><div class="metric-label">Global stakeholders aligned</div></div>
+      </div>
+    </div>
+    <div class="case-right">
+      <div class="case-title">ML-Powered Document Classification for 1.2M Legal Documents</div>
+      <div class="case-summary">Led end-to-end product delivery of a machine learning document labeling system — automatically classifying 1.2M legal documents, aligning 20+ international stakeholders, and delivering 17% efficiency improvement through intelligent automation.</div>
+      <div class="case-section-label">The Challenge</div>
+      <div class="case-content"><ul>
+        <li>Program officers manually reviewed and classified massive volumes of legal documents — slow, inconsistent, and impossible to scale</li>
+        <li>High-stakes grant decisions depended on accurate document categorization; misclassification had real consequences for program integrity</li>
+        <li>20+ stakeholders across global geographies with competing taxonomies and priorities needed to align before any model could be trained</li>
+      </ul></div>
+      <div class="case-section-label">What I Did</div>
+      <div class="case-content"><ul>
+        <li>Facilitated structured requirements workshops with 20+ global stakeholders to define shared classification taxonomy and labeling logic</li>
+        <li>Wrote product requirements for multi-label NLP classification model with human-in-the-loop escalation for low-confidence predictions</li>
+        <li>Designed confidence threshold framework ensuring high-risk documents always routed to human review — balancing automation with oversight</li>
+        <li>Built stakeholder reporting layer enabling program officers to audit model decisions and flag edge cases for retraining</li>
+      </ul></div>
+      <div class="case-outcome-strip">
+        <div class="outcome-item"><span class="outcome-num">1.2M</span><span class="outcome-desc">Docs Classified</span></div>
+        <div class="outcome-item"><span class="outcome-num">17%</span><span class="outcome-desc">Efficiency Gain</span></div>
+        <div class="outcome-item"><span class="outcome-num">20+</span><span class="outcome-desc">Stakeholders Aligned</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="skills-layout">
+    <div class="skills-left">
+      <div class="section-tag">Capabilities</div>
+      <h2 class="section-title reveal">Technical<br>Depth Meets<br><em>Product</em><br>Instinct.</h2>
+      <p style="font-size:14px; color: var(--slate); line-height:1.7; margin-top:20px;">The rarest PM profile: genuine hands-on AI/ML expertise paired with executive-level strategic vision. I've evaluated 8 production LLMs, built monitoring pipelines, and can write the SQL myself — while also owning the roadmap, the budget, and the team.</p>
+    </div>
+    <div class="skills-right">
+      <div id="skillBars" class="reveal">
+        <div class="skill-bar-header"><span class="skill-bar-name">LLM Strategy, Evaluation & RAG</span><span class="skill-bar-pct">95%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+        <div class="skill-bar-header"><span class="skill-bar-name">ML Product Lifecycle & MLOps</span><span class="skill-bar-pct">90%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+        <div class="skill-bar-header"><span class="skill-bar-name">Product Roadmap & Prioritization</span><span class="skill-bar-pct">95%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+        <div class="skill-bar-header"><span class="skill-bar-name">User Research & Discovery</span><span class="skill-bar-pct">90%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+        <div class="skill-bar-header"><span class="skill-bar-name">Data Analysis & Metrics Design</span><span class="skill-bar-pct">92%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div>
+        <div class="skill-bar-header"><span class="skill-bar-name">AI Governance & Risk Management</span><span class="skill-bar-pct">93%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="93"></div></div>
+      </div>
+      <div class="skill-chips-grid reveal">
+        <div class="skill-chip">Python</div><div class="skill-chip">SQL / R</div>
+        <div class="skill-chip">LangChain</div><div class="skill-chip">Pinecone</div>
+        <div class="skill-chip">GPT-4 / Claude</div><div class="skill-chip">Docker / CI-CD</div>
+        <div class="skill-chip">A/B Testing</div><div class="skill-chip">Feature Eng.</div>
+        <div class="skill-chip">Amplitude</div><div class="skill-chip">Looker</div>
+        <div class="skill-chip">Figma</div><div class="skill-chip">Jira / Confluence</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="timeline-section" id="experience">
+  <div class="section-tag">Career Timeline</div>
+  <h2 class="section-title reveal">15+ Years Building<br><em>AI at Scale</em></h2>
+  <p class="section-sub reveal">A career at the intersection of financial services, consulting, and enterprise AI — always closer to the technical work than most PMs, always accountable to business outcomes.</p>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2024 — Present</div>
+      <div class="timeline-role">Senior Technology Manager, AI Strategy & Governance</div>
+      <div class="timeline-company">Top-5 U.S. Financial Institution · Charlotte, NC</div>
+      <div class="timeline-desc">Own end-to-end ML product lifecycle for a RAG-powered AI assistant serving 2.3M+ monthly queries. Delivered $6.8M annual savings and improved accuracy from 70%→92% while maintaining &lt;1% hallucination rate. Built and scaled 8-person data science team to 95% on-time delivery with $2.5M annual budget. Evaluated 8 LLMs, selected GPT-4, cutting API costs 34%.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2021 — 2023</div>
+      <div class="timeline-role">Principal Consultant — AI Product Manager</div>
+      <div class="timeline-company">SIA Partners · Charlotte, NC</div>
+      <div class="timeline-desc">Delivered AI and data science product engagements for global technology, global financial services institutions, and philanthropic clients. Built privacy compliance platforms (+85% adherence), HR analytics systems (7% cost reduction), SFTR compliance automation (2-week cycle reduction), and ML document classification for 1.2M documents (+17% efficiency).</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2020 — 2021</div>
+      <div class="timeline-role">Senior Product Manager — Data Science</div>
+      <div class="timeline-company">Insight Global LLC & PersuMedia LLC · Remote</div>
+      <div class="timeline-desc">Designed ML pipelines using LLMs for Moody's Analytics. Launched topic modeling MVP delivering 2.5 FTE savings. Defined product requirements, created user stories, and developed documentation for NLP features with Tableau-based insights delivery.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2006 — 2020</div>
+      <div class="timeline-role">Analytics Leadership & ML Product Roles</div>
+      <div class="timeline-company">HSBC Bank · Columbus State University · UNC Charlotte · STEM-AWAY</div>
+      <div class="timeline-desc">9 years at HSBC leading analytics teams across customer acquisition models, portfolio automation, and credit analytics — delivering $144K annual savings and 26% client base growth. Also built ML products for healthcare outcomes, urban analytics, and student enrollment forecasting across academic institutions.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PM APPROACH -->
+<section class="approach" id="approach">
+  <div class="section-tag">How I Work</div>
+  <h2 class="section-title reveal">My PM<br><em>Philosophy</em></h2>
+  <p class="section-sub reveal" style="margin-bottom:56px;">Four principles forged from building AI products in regulated, high-stakes environments — where vague requirements and unmeasured outcomes aren't options.</p>
+  <div class="approach-grid">
+    <div class="approach-card reveal">
+      <div class="approach-step">01</div>
+      <div class="approach-icon">🔭</div>
+      <div class="approach-name">Evidence Before Roadmap</div>
+      <div class="approach-desc">I've run 20+ user interviews and analyzed 10,000 support tickets before writing a single spec. Data and customer evidence determine priorities — not stakeholder volume or instinct.</div>
+    </div>
+    <div class="approach-card reveal">
+      <div class="approach-step">02</div>
+      <div class="approach-icon">🎯</div>
+      <div class="approach-name">Define Success Upfront</div>
+      <div class="approach-desc">Every feature I ship has pre-defined, measurable success criteria. Accuracy ≥92%, latency &lt;2s, cost &lt;$50K/month. If you can't measure it before you build it, you can't know if it worked.</div>
+    </div>
+    <div class="approach-card reveal">
+      <div class="approach-step">03</div>
+      <div class="approach-icon">⚙️</div>
+      <div class="approach-name">Technical Fluency</div>
+      <div class="approach-desc">I evaluated 8 production LLMs and can explain embedding drift, RAG retrieval quality, and CI/CD pipeline tradeoffs. This fluency accelerates engineering collaboration and earns real trust on technical teams.</div>
+    </div>
+    <div class="approach-card reveal">
+      <div class="approach-step">04</div>
+      <div class="approach-icon">🤝</div>
+      <div class="approach-name">Ship Through Alignment</div>
+      <div class="approach-desc">I've aligned 20+ global stakeholders with competing taxonomies and priorities into a single shared product. Alignment isn't soft skills — it's the hardest and most important technical skill in product.</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section style="background: var(--navy); padding: 80px 60px;">
+  <div class="section-tag">Education</div>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(201,168,76,0.08); max-width: 920px;">
+    <div style="background: var(--navy-mid); padding: 40px 32px;">
+      <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px;">MS · Data Science</div>
+      <div style="font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--cream); margin-bottom: 8px;">UNC Charlotte</div>
+      <div style="font-size: 12px; color: var(--slate); line-height: 1.6;">Machine Learning, NLP, Statistical Modeling</div>
+    </div>
+    <div style="background: var(--navy-mid); padding: 40px 32px;">
+      <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px;">MBA</div>
+      <div style="font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--cream); margin-bottom: 8px;">Columbus State University</div>
+      <div style="font-size: 12px; color: var(--slate); line-height: 1.6;">Strategy, Finance & Organizational Leadership</div>
+    </div>
+    <div style="background: var(--navy-mid); padding: 40px 32px;">
+      <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px;">BTech · Computer Science</div>
+      <div style="font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--cream); margin-bottom: 8px;">WBUT, India</div>
+      <div style="font-size: 12px; color: var(--slate); line-height: 1.6;">Computer Science & Engineering</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-content">
+    <div class="contact-eyebrow">Seeking Senior PM · Staff PM · Remote Roles</div>
+    <h2 class="contact-title">Let's Build<br>Something <em>Remarkable.</em></h2>
+    <p class="contact-sub">Actively exploring Senior Product Manager and Staff Product Manager roles at growth-stage AI companies. Charlotte, NC — fully remote-ready. If you're building something ambitious in AI, let's talk.</p>
+    <div class="contact-links">
+      <a class="btn-primary" href="mailto:smitakshiguptaa@gmail.com">Email Me</a>
+      <a class="btn-outline" href="https://linkedin.com/in/smitakshi-gupta/" target="_blank">View LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">Smitakshi Gupta</div>
+  <div class="footer-text">Senior / Staff AI Product Manager · Charlotte, NC · Remote-Ready · smitakshiguptaa@gmail.com · © 2026</div>
+</footer>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  document.addEventListener('mousemove', e => {
+    cursor.style.transform = `translate(${e.clientX-6}px, ${e.clientY-6}px)`;
+    ring.style.transform = `translate(${e.clientX-18}px, ${e.clientY-18}px)`;
+  });
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Timeline items
+  document.querySelectorAll('.timeline-item').forEach((el, i) => {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) setTimeout(() => el.classList.add('visible'), i * 150); });
+    }, { threshold: 0.2 }).observe(el);
+  });
+
+  // Skill bars
+  let barsAnimated = false;
+  function animateBars() {
+    if (barsAnimated) return;
+    barsAnimated = true;
+    document.querySelectorAll('.skill-bar-fill').forEach((bar, i) => {
+      setTimeout(() => { bar.style.width = bar.getAttribute('data-width') + '%'; }, i * 100);
